@@ -1,37 +1,493 @@
-<!DOCTYPE html>
+[8/8/2026 3:36 AM] Zfx: <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Obsessive Scent</title>
+  <meta name="description" content="Obsessive Scent — fragrances made to be remembered.">
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0a0a0a;
+      color: #f7f3ea;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav {
+      height: 74px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 20px;
+      letter-spacing: 3px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: #cfc7b8;
+    }
+
+    .nav-links a:hover {
+      color: #d7b96d;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
       text-align: center;
+      padding: 120px 20px 70px;
+      background:
+        radial-gradient(circle at center, rgba(215,185,109,0.13), transparent 35%),
+        linear-gradient(180deg, #090909 0%, #111 100%);
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+    .hero .eyebrow {
+      color: #d7b96d;
+      letter-spacing: 5px;
+      font-size: 12px;
+      margin-bottom: 20px;
     }
 
-    p {
-      color: #ccc;
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(56px, 9vw, 110px);
+      font-weight: 400;
+      line-height: 0.95;
+      max-width: 1000px;
+    }
+
+    .hero h1 span {
+      color: #d7b96d;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 28px auto;
+      color: #bdb5a8;
       font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid #d7b96d;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #d7b96d;
+      color: #111;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #ead28f;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      color: #f7f3ea;
+    }
+
+    .btn-secondary:hover {
+      background: #d7b96d;
+      color: #111;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title small {
+      color: #d7b96d;
+      letter-spacing: 4px;
+      font-size: 11px;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      margin-top: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: #121212;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 24px;
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(215,185,109,0.5);
+    }
+
+    .product-image {
+      height: 310px;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 50% 30%, #4b4025 0%, #1a1711 40%, #0d0d0d 75%);
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+    }
+
+    .bottle {
+      width: 115px;
+      height: 170px;
+      border: 2px solid #d7b96d;
+      border-radius: 18px 18px 28px 28px;
+      position: relative;
+      box-shadow: 0 0 40px rgba(215,185,109,.18);
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      color: #d7b96d;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+[8/8/2026 3:36 AM] Zfx: .bottle:before {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 28px;
+      border: 2px solid #d7b96d;
+      top: -32px;
+      border-radius: 8px 8px 2px 2px;
+      background: #111;
+    }
+
+    .card h3 {
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: 400;
+      margin-bottom: 7px;
+    }
+
+    .card p {
+      color: #a9a197;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      color: #d7b96d;
+      font-weight: 700;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-box {
+      min-height: 470px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(215,185,109,.25), transparent 25%),
+        linear-gradient(145deg, #17140f, #090909);
+      border: 1px solid rgba(255,255,255,.08);
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 60px;
+      color: #d7b96d;
+    }
+
+    .about-text small {
+      color: #d7b96d;
+      letter-spacing: 4px;
+    }
+
+    .about-text h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 400;
+      line-height: 1.05;
+      margin: 15px 0 25px;
+    }
+
+    .about-text p {
+      color: #aaa297;
+      margin-bottom: 16px;
+    }
+
+    .cta {
+      text-align: center;
+      border-radius: 30px;
+      padding: 70px 25px;
+      background:
+        radial-gradient(circle, rgba(215,185,109,.16), transparent 45%),
+        #111;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .cta h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: clamp(36px, 5vw, 58px);
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #aaa297;
+      max-width: 600px;
+      margin: 0 auto 25px;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #827b71;
+      font-size: 13px;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .about-box {
+        min-height: 340px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div>
-    <h1>Obsessive Scent</h1>
-    <p>Something unforgettable is coming.</p>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="#">OBSESSIVE SCENT</a>
+
+      <div class="nav-links">
+        <a href="#collection">Collection</a>
+        <a href="#about">Our Story</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
   </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow">THE ART OF OBSESSION</div>
+
+      <h1>
+        A scent they<br>
+        <span>won't forget.</span>
+      </h1>
+
+      <p>
+        Discover fragrances created for presence, confidence and unforgettable
+        first impressions.
+      </p>
+
+      <div class="buttons">
+        <a href="#collection" class="btn btn-primary">Explore Collection</a>
+        <a href="#contact" class="btn btn-secondary">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="collection">
+    <div class="container">
+
+      <div class="section-title">
+        <small>OUR COLLECTION</small>
+        <h2>Find Your Obsession</h2>
+      </div>
+
+      <div class="products">
+
+        <article class="card">
+          <div class="product-image">
+            <div class="bottle">OBSESSIVE<br>NO. 01</div>
+          </div>
+
+          <h3>Noir Obsession</h3>
+
+          <p>
+            Deep, mysterious and addictive. Designed for nights that deserve
+            to be remembered.
+          </p>
+
+          <div class="price">Coming Soon</div>
+        </article>
+
+        <article class="card">
+          <div class="product-image">
+            <div class="bottle">OBSESSIVE<br>NO. 02</div>
+          </div>
+
+          <h3>Golden Desire</h3>
+
+          <p>
+            Warm, elegant and magnetic.
+[8/8/2026 3:36 AM] Zfx: A refined scent with a luxurious
+            signature.
+          </p>
+
+          <div class="price">Coming Soon</div>
+        </article>
+
+        <article class="card">
+          <div class="product-image">
+            <div class="bottle">OBSESSIVE<br>NO. 03</div>
+          </div>
+
+          <h3>Velvet Rush</h3>
+
+          <p>
+            Smooth, sensual and confident. Crafted to leave an unmistakable
+            impression.
+          </p>
+
+          <div class="price">Coming Soon</div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+
+      <div class="about-box">
+        OS
+      </div>
+
+      <div class="about-text">
+        <small>OUR STORY</small>
+
+        <h2>
+          More than fragrance.<br>
+          It's a memory.
+        </h2>
+
+        <p>
+          Obsessive Scent was created around one simple idea: the right fragrance
+          should stay in someone's mind long after you've left the room.
+        </p>
+
+        <p>
+          Our vision is to create distinctive scents that feel luxurious,
+          confident and unforgettable.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+
+      <div class="cta">
+        <h2>Ready to become unforgettable?</h2>
+
+        <p>
+          Follow Obsessive Scent and be the first to know when our collection
+          drops.
+        </p>
+
+        <div class="buttons">
+          <a href="#" class="btn btn-primary">WhatsApp Us</a>
+          <a href="#" class="btn btn-secondary">Instagram</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-wrap">
+    <div>© 2026 Obsessive Scent. All rights reserved.</div>
+    <div>Made for obsession.</div>
+  </div>
+</footer>
+
 </body>
 </html>
